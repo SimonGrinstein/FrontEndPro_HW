@@ -26,9 +26,9 @@ root.render(
 
     {/* <Lesson03 /> */}
 
-    {/* <Homework03 /> */}
+    <Homework03 />
     
-    <Lesson04 />
+    {/* <Lesson04 /> */}
   </>
 );
 

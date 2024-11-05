@@ -1,7 +1,7 @@
 // импорт хука useState()
 import { useState } from "react";
-import "./lesson04.css";
 import MyButton from "../../components/myButton/MyButton";
+import "./lesson04.css";
 
 function Lesson04() {
   // * изменение обычных переменных в React не приведет к обновлению компонента 🫤
@@ -33,11 +33,13 @@ function Lesson04() {
   const [count, setCount] = useState(0);
 
   // * пример со строкой
-  // const [name, setName] = useState('John')
+  const [name, setName] = useState("John");
 
   // * пример с булевым значением
   // const [toggle, setToggle] = useState(true)
 
+  // * пример с массивом
+  const [items, setItems] = useState([1, 2, 3]);
 
   const handleMinus = () => {
     setCount(prev => prev - 1);
@@ -47,15 +49,36 @@ function Lesson04() {
     setCount(prev => prev + 1);
   };
 
+  // * обработчики для практики useState()
+
+  // изменение строки
+  const handleUpperCase = () => {
+    setName(prev => prev.toUpperCase());
+  };
+
+  // изменение массива
+  // * состояние нельзя мутировать
+  // поэтому мы передаем в функцию сеттер новое значение
+  // в случаем с массивом мы используем spread оператор для копии текущего значения массива
+
+  const handleChangeArray = () => {
+    // удалили элемент по индексу
+    setItems(items.filter((_,index) => index !== 0))
+    // дописали элемент в начало
+    setItems(items => [4, ...items])
+  };
+
+  console.log(items)
+
   return (
     <div className="lesson-container">
       <h2>Lesson 04</h2>
       <p>React hook useState()🪝</p>
       <div className="counter">
-        <MyButton func={handleMinus} text={'-'} />
+        <MyButton func={handleMinus} text={"-"} />
         {/* <button onClick={handleMinus}>-</button> */}
         <span>{count}</span>
-        <MyButton func={handlePlus} text={'+'} isDanger={false}/>
+        <MyButton func={handlePlus} text={"+"} isDanger={false} />
         {/* <button onClick={handlePlus}>+</button> */}
       </div>
       <p>
@@ -68,6 +91,19 @@ function Lesson04() {
         массиве из useState() - она перезаписывает состояние. Изменение состояния вызывает ререндр с
         новыми данными
       </p>
+      <div className="state-practice">
+      <h4>UseState practice:</h4>
+        <p>Изменение строки:</p>
+        <div>
+          <span>{name}</span>
+          <MyButton func={handleUpperCase} text={"Change name"} />
+        </div>
+        <p>Изменение массива:</p>
+        <div>
+          <span>{items[0]}, {items[1]}, {items[2]}</span>
+          <MyButton func={handleChangeArray} text={"Change first number"} />
+        </div>
+      </div>
     </div>
   );
 }
