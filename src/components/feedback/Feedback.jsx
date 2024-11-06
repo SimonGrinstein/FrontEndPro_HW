@@ -18,8 +18,11 @@ function Feedback() {
   };
 
   const resetResults = () => {
-    setLike(prev => prev - like);
-    setDislike(prev => prev - dislike);
+    // setLike(prev => prev - like);
+    // setDislike(prev => prev - dislike);
+    setLike(0);
+    setDislike(0);
+
   };
 
 
@@ -35,7 +38,7 @@ function Feedback() {
         <MyButton func={dislikePlus} text={"Dislike"} isDanger={false} />
       </div>
       <div className="counter">
-        <MyButton func={resetResults} text={"Reset Results"} isDanger={false} />
+        <MyButton func={resetResults} text={"Reset Results"}/>
       </div>
       
     </div>
