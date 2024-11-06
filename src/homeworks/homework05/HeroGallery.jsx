@@ -1,4 +1,4 @@
-import { heroes } from "./data";
+import { heroes } from "./data.js";
 import HeroCard from "./HeroCard.jsx";
 
 function HeroGallery() {
